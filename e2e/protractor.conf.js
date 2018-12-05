@@ -4,6 +4,7 @@
 const { SpecReporter } = require('jasmine-spec-reporter');
 var HtmlReporter = require('protractor-beautiful-reporter');
 var jasmineReporters = require('jasmine-reporters');
+process.env.CHROME_BIN = process.env.CHROME_BIN || require("puppeteer").executablePath();
 
 exports.config = {
   allScriptsTimeout: 11000,
@@ -13,7 +14,7 @@ exports.config = {
   capabilities: {
     'browserName': 'chrome',
     'chromeOptions': {
-      args: ['--headless', '--no-sandbox']
+      binary: process.env.CHROME_BIN
     }
   },
   directConnect: true,
